@@ -16,10 +16,14 @@
 }
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);color:var(--muted);font-family:var(--sans);font-weight:300;overflow-x:hidden;cursor:none;}
-.cursor{position:fixed;width:8px;height:8px;background:var(--cream);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,width 0.3s,height 0.3s,opacity 0.3s;mix-blend-mode:difference;}
-.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--cream2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease-out,width 0.3s,height 0.3s,opacity 0.3s;mix-blend-mode:difference;}
+
+/* ── CURSOR ── */
+.cursor{position:fixed;width:8px;height:8px;background:var(--cream);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,opacity 0.3s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--cream2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,opacity 0.3s;mix-blend-mode:difference;}
 .cursor.hover{width:0;height:0;opacity:0}
 .cursor-ring.hover{width:56px;height:56px;opacity:0.5}
+
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:28px 48px;z-index:500;}
 .nav-logo{font-family:var(--display);font-size:22px;letter-spacing:0.12em;color:var(--cream);text-decoration:none;}
 .nav-links{display:flex;gap:40px;list-style:none}
@@ -29,12 +33,36 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 .nav-links a:hover::after{transform:scaleX(1)}
 .nav-links a.active{color:var(--cream)}
 .nav-links a.active::after{transform:scaleX(1)}
+
+/* ── PAGES ── */
 .page{display:none;min-height:100vh}
 .page.active{display:block}
 #page-home{overflow:hidden}
-.home-hero{height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 72px;position:relative;}
+
+/* ── HOME HERO ── */
+.home-hero{height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 72px;position:relative;overflow:hidden;}
 .home-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 70% 40%,rgba(223,211,188,0.04) 0%,transparent 70%),var(--bg);}
-.hero-index{position:absolute;top:50%;right:48px;transform:translateY(-50%);font-size:11px;letter-spacing:0.2em;color:var(--muted);writing-mode:vertical-rl;}
+
+/* Hero portrait image */
+.hero-portrait{
+  position:absolute;
+  right:0;bottom:0;
+  height:92%;
+  width:auto;
+  object-fit:contain;
+  object-position:bottom right;
+  opacity:0.55;
+  mask-image:linear-gradient(to left, rgba(0,0,0,0.9) 30%, transparent 100%),
+             linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.0) 85%);
+  -webkit-mask-image:linear-gradient(to left, rgba(0,0,0,0.9) 30%, transparent 100%);
+  mask-composite:intersect;
+  -webkit-mask-composite:source-in;
+  pointer-events:none;
+  z-index:0;
+  filter:grayscale(30%);
+}
+
+.hero-index{position:absolute;top:50%;right:48px;transform:translateY(-50%);font-size:11px;letter-spacing:0.2em;color:var(--muted);writing-mode:vertical-rl;z-index:2;}
 .hero-big{font-family:var(--display);font-size:clamp(90px,15vw,200px);line-height:0.88;color:var(--cream);letter-spacing:0.02em;position:relative;z-index:1;}
 .hero-big .outline{-webkit-text-stroke:1px rgba(223,211,188,0.3);color:transparent;}
 .hero-sub{margin-top:32px;display:flex;align-items:center;gap:40px;position:relative;z-index:1;}
@@ -42,6 +70,8 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 .hero-line{flex:1;height:1px;background:var(--border)}
 .hero-cta{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);cursor:none;padding:14px 0;border-bottom:1px solid var(--border);background:none;border-top:none;border-left:none;border-right:none;transition:color 0.3s,border-color 0.3s;}
 .hero-cta:hover{color:var(--cream);border-color:var(--cream2)}
+
+/* ── HOME REEL ── */
 .home-reel{padding:160px 48px;position:relative;}
 .reel-label{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
 .reel-headline{font-family:var(--display);font-size:clamp(48px,7vw,96px);color:var(--cream);letter-spacing:0.04em;line-height:1;margin-bottom:64px;}
@@ -56,6 +86,8 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 .reel-item:hover .reel-item-tag{opacity:1}
 .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#0f0f0f;position:relative;}
 .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#141414 0%,#0a0a0a 100%);}
+
+/* ── HOME ABOUT ── */
 .home-about{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border);}
 .about-left{padding:100px 48px;border-right:1px solid var(--border);}
 .about-number{font-family:var(--display);font-size:clamp(80px,10vw,140px);color:var(--cream3);line-height:1;margin-bottom:32px;letter-spacing:0.04em;}
@@ -76,23 +108,9 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 .gallery-hero-bg-text{position:absolute;font-family:var(--display);font-size:clamp(160px,22vw,320px);color:rgba(223,211,188,0.03);top:50%;left:-10px;transform:translateY(-50%);letter-spacing:0.02em;white-space:nowrap;pointer-events:none;user-select:none;}
 
 /* ── FILTER TABS ── */
-.filter-bar{
-  display:flex;align-items:center;gap:0;
-  padding:0 2px;
-  border-bottom:1px solid var(--border);
-}
-.filter-btn{
-  font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--muted);background:none;border:none;
-  padding:20px 28px;cursor:none;
-  position:relative;transition:color 0.3s;
-}
-.filter-btn::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;
-  height:1px;background:var(--cream);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 0.3s;
-}
+.filter-bar{display:flex;align-items:center;gap:0;padding:0 2px;border-bottom:1px solid var(--border);}
+.filter-btn{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);background:none;border:none;padding:20px 28px;cursor:none;position:relative;transition:color 0.3s;}
+.filter-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--cream);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
 .filter-btn:hover{color:var(--cream2)}
 .filter-btn.active{color:var(--cream)}
 .filter-btn.active::after{transform:scaleX(1)}
@@ -108,8 +126,6 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 .masonry-item-cat{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
 .ph-inner{width:100%;background:#0f0f0f;display:flex;align-items:center;justify-content:center;}
 .ph-label{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(223,211,188,0.15);}
-
-/* hide/show filter */
 .masonry-item[data-cat].hidden{display:none}
 
 /* ── VIDEO ── */
@@ -148,23 +164,114 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 .s-tag{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cream2);border:1px solid var(--border);padding:6px 14px;transition:border-color 0.3s,color 0.3s;}
 .s-tag:hover{border-color:var(--cream2);color:var(--cream)}
 
-/* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(48px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:36px 48px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:80px;
+}
+.footer-logo{font-family:var(--display);font-size:18px;letter-spacing:0.12em;color:var(--cream2);}
+.footer-links{display:flex;gap:28px;align-items:center;flex-wrap:wrap;}
+.footer-link{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s;}
+.footer-link:hover{color:var(--cream)}
+.footer-copy{font-size:10px;letter-spacing:0.1em;color:var(--muted);opacity:0.5;}
+
+/* ── LIGHTBOX ── */
+.lb-overlay{
+  position:fixed;inset:0;
+  background:rgba(8,8,8,0.96);
+  z-index:2000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.lb-overlay.open{opacity:1;pointer-events:all;}
+.lb-img{
+  max-width:90vw;max-height:88vh;
+  object-fit:contain;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.15s,
+             transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.15s;
+  display:block;
+  border:1px solid var(--border);
+}
+.lb-overlay.loaded .lb-img{opacity:1;transform:translateY(0);}
+.lb-close{
+  position:absolute;top:24px;right:32px;
+  font-size:28px;color:var(--muted);
+  background:none;border:none;cursor:none;
+  transition:color 0.2s;line-height:1;
+}
+.lb-close:hover{color:var(--cream)}
+.lb-spinner{
+  position:absolute;
+  width:32px;height:32px;
+  border:1px solid var(--border);
+  border-top-color:var(--cream2);
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+.lb-overlay.loaded .lb-spinner{display:none;}
+.lb-caption{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  text-align:center;
+}
+.lb-caption-title{font-family:var(--display);font-size:18px;letter-spacing:0.08em;color:var(--cream);}
+.lb-caption-cat{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── SCROLL REVEAL — smooth fade up ── */
+.reveal{
+  opacity:0;
+  transform:translateY(36px);
+  transition:opacity 1.1s cubic-bezier(0.16,1,0.3,1),
+             transform 1.1s cubic-bezier(0.16,1,0.3,1);
+}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal-left{
+  opacity:0;transform:translateX(-40px);
+  transition:opacity 1.1s cubic-bezier(0.16,1,0.3,1),transform 1.1s cubic-bezier(0.16,1,0.3,1);
+}
 .reveal-left.visible{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1);}
+.reveal-right{
+  opacity:0;transform:translateX(40px);
+  transition:opacity 1.1s cubic-bezier(0.16,1,0.3,1),transform 1.1s cubic-bezier(0.16,1,0.3,1);
+}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
-.stagger>*{opacity:0;transform:translateY(32px);transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1),transform 0.7s cubic-bezier(0.16,1,0.3,1);}
-.stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:0s}
-.stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:0.1s}
-.stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:0.2s}
-.stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:0.3s}
-.stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:0.4s}
-.stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:0.5s}
-.stagger.visible>*:nth-child(7){opacity:1;transform:none;transition-delay:0.6s}
-.stagger.visible>*:nth-child(8){opacity:1;transform:none;transition-delay:0.7s}
-.stagger.visible>*:nth-child(9){opacity:1;transform:none;transition-delay:0.8s}
+
+/* stagger — each child fades up individually */
+.stagger>*{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),
+             transform 0.85s cubic-bezier(0.16,1,0.3,1);
+}
+.stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:0.00s}
+.stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:0.09s}
+.stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:0.18s}
+.stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:0.27s}
+.stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:0.36s}
+.stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:0.45s}
+.stagger.visible>*:nth-child(7){opacity:1;transform:none;transition-delay:0.54s}
+.stagger.visible>*:nth-child(8){opacity:1;transform:none;transition-delay:0.63s}
+.stagger.visible>*:nth-child(9){opacity:1;transform:none;transition-delay:0.72s}
+.stagger.visible>*:nth-child(n+10){opacity:1;transform:none;transition-delay:0.80s}
+
+/* masonry items each get individual reveal */
+.masonry-item{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+             transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.masonry-item.visible{opacity:1;transform:translateY(0);}
+
 .hero-animate{opacity:0;transform:translateY(30px);animation:heroIn 1.1s cubic-bezier(0.16,1,0.3,1) forwards;}
 .hero-animate:nth-child(1){animation-delay:0.1s}
 .hero-animate:nth-child(2){animation-delay:0.25s}
@@ -172,6 +279,7 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 .hero-animate:nth-child(4){animation-delay:0.55s}
 @keyframes heroIn{to{opacity:1;transform:none}}
 
+/* ── RESPONSIVE ── */
 @media(max-width:768px){
   nav{padding:20px 24px}.nav-links{display:none}
   .home-hero{padding:0 24px 52px}.hero-big{font-size:clamp(64px,18vw,120px)}.hero-index{display:none}
@@ -183,11 +291,13 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
   .contact-layout{grid-template-columns:1fr}.contact-left{padding:100px 24px 60px;border-right:none;border-bottom:1px solid var(--border)}.contact-right{padding:60px 24px 80px}
   .video-hero,.gallery-hero{height:40vh}
   .filter-btn{padding:16px 16px;font-size:9px}
+  footer{padding:28px 24px;flex-direction:column;align-items:flex-start;gap:16px}
+  .hero-portrait{opacity:0.25;right:-60px;}
 }
 @media(max-width:480px){.masonry{columns:1}}
 @media(prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
-  .reveal,.reveal-left,.reveal-right,.hero-animate,.stagger>*{opacity:1!important;transform:none!important}
+  .reveal,.reveal-left,.reveal-right,.hero-animate,.stagger>*,.masonry-item{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
@@ -196,8 +306,19 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- ── LIGHTBOX ── -->
+<div class="lb-overlay" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <div class="lb-spinner"></div>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <div class="lb-caption">
+    <p class="lb-caption-title" id="lb-title"></p>
+    <p class="lb-caption-cat" id="lb-cat"></p>
+  </div>
+</div>
+
 <nav>
-  <a class="nav-logo" href="#" onclick="showPage('home');return false">ED</a>
+  <a class="nav-logo" href="#" onclick="showPage('home');return false">Eli</a>
   <ul class="nav-links">
     <li><a href="#" onclick="showPage('designs');return false" data-page="designs">Designs</a></li>
     <li><a href="#" onclick="showPage('photography');return false" data-page="photography">Photography</a></li>
@@ -210,6 +331,8 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
 <div class="page active" id="page-home">
   <div class="home-hero">
     <div class="home-hero-bg"></div>
+    <!-- Your portrait PNG goes in images/eli-portrait.png -->
+    <img class="hero-portrait" src="images/eli-portrait.png" alt="Elisha Deeshan">
     <span class="hero-index">Colombo · Sri Lanka</span>
     <h1 class="hero-big hero-animate">ELISHA<br><span class="outline">DEESHAN</span></h1>
     <div class="hero-sub hero-animate">
@@ -224,7 +347,7 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
     <h2 class="reel-headline reveal">What I do</h2>
     <div class="reel-grid stagger">
       <div class="reel-item" onclick="showPage('designs')">
-        <img src="images/designs/corporate/Cafe-Monica-Independence-post.jpg" alt="Designs">
+        <img src="images/designs/corporate/GrabFood-Dine-Out-Post.jpg" alt="Designs">
         <span class="reel-item-label">Designs</span>
         <span class="reel-item-tag">Branding · Print · Digital</span>
       </div>
@@ -261,6 +384,17 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
       </div>
     </div>
   </section>
+
+  <footer>
+    <span class="footer-logo">Eli</span>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.instagram.com/eliiuiii/" target="_blank">Instagram</a>
+      <a class="footer-link" href="https://www.linkedin.com/in/elisha-deeshan" target="_blank">LinkedIn</a>
+      <a class="footer-link" href="mailto:elishadeeshan134@gmail.com">elishadeeshan134@gmail.com</a>
+      <a class="footer-link" href="tel:+94XXXXXXXXX">+94 XX XXX XXXX</a>
+    </div>
+    <span class="footer-copy">© 2026 Elisha Deeshan</span>
+  </footer>
 </div>
 
 <!-- ══════════ DESIGNS ══════════ -->
@@ -270,193 +404,68 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
     <h1 class="gallery-hero-title hero-animate">DESIGNS</h1>
     <p class="gallery-hero-sub hero-animate">Branding · Print · Digital · Social</p>
   </div>
-
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterDesigns('all')">All</button>
-    <button class="filter-btn" onclick="filterDesigns('corporate')">Corporate</button>
-    <button class="filter-btn" onclick="filterDesigns('freelance')">Freelance</button>
+    <button class="filter-btn active" onclick="filterDesigns('all',this)">All</button>
+    <button class="filter-btn" onclick="filterDesigns('corporate',this)">Corporate</button>
+    <button class="filter-btn" onclick="filterDesigns('freelance',this)">Freelance</button>
   </div>
-
   <div class="masonry" id="designs-masonry" style="margin-top:2px">
-    <!-- ── CORPORATE ── -->
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Cafe-Monica-Independence-post.jpg" alt="Cafe Monica Independence Post">
-      <div class="masonry-item-info"><p class="masonry-item-title">Independence Day</p><p class="masonry-item-cat">Cafe Monica · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Cafe-Monica-New-years-Post-02.jpg" alt="Cafe Monica New Year">
-      <div class="masonry-item-info"><p class="masonry-item-title">New Year's Post</p><p class="masonry-item-cat">Cafe Monica · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Cafe-Monica-Valentines-01.jpg" alt="Cafe Monica Valentines">
-      <div class="masonry-item-info"><p class="masonry-item-title">Valentine's Day</p><p class="masonry-item-cat">Cafe Monica · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Chengdu-Christmas-post-02.jpg" alt="Chengdu Christmas">
-      <div class="masonry-item-info"><p class="masonry-item-title">Christmas Post</p><p class="masonry-item-cat">Chengdu · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Chinese-New-Year-Post.jpg" alt="Chinese New Year">
-      <div class="masonry-item-info"><p class="masonry-item-title">Chinese New Year</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Comment_Card_MOC_Colombo 13.09.2024-01.jpg" alt="MOC Comment Card">
-      <div class="masonry-item-info"><p class="masonry-item-title">Comment Card</p><p class="masonry-item-cat">Ministry of Crab · Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Coupon-AW-01.jpg" alt="Coupon">
-      <div class="masonry-item-info"><p class="masonry-item-title">Coupon Design</p><p class="masonry-item-cat">Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Coupon-AW-02.jpg" alt="Coupon 02">
-      <div class="masonry-item-info"><p class="masonry-item-title">Coupon Design 02</p><p class="masonry-item-cat">Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/D.O.C.jpg" alt="D.O.C">
-      <div class="masonry-item-info"><p class="masonry-item-title">D.O.C</p><p class="masonry-item-cat">Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Email-Template.jpg" alt="Email Template">
-      <div class="masonry-item-info"><p class="masonry-item-title">Email Template</p><p class="masonry-item-cat">Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Event-Post.png" alt="Event Post">
-      <div class="masonry-item-info"><p class="masonry-item-title">Event Post</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Fathers-Day-Ad-01.jpg" alt="Fathers Day Ad">
-      <div class="masonry-item-info"><p class="masonry-item-title">Father's Day Ad</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/GIG-Hotel-Ad-01.jpg" alt="GIG Hotel Ad">
-      <div class="masonry-item-info"><p class="masonry-item-title">GIG Hotel Ad</p><p class="masonry-item-cat">Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/GrabFood-Dine-Out-Post.jpg" alt="GrabFood Post">
-      <div class="masonry-item-info"><p class="masonry-item-title">GrabFood Dine Out</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Halloween-Post.jpg" alt="Halloween Post">
-      <div class="masonry-item-info"><p class="masonry-item-title">Halloween Post</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Hotel-Theodore-Ads-01.jpg" alt="Hotel Theodore Ad">
-      <div class="masonry-item-info"><p class="masonry-item-title">Hotel Theodore</p><p class="masonry-item-cat">Digital Ad</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Hotel-Theodore-Ads-05.jpg" alt="Hotel Theodore Ad 05">
-      <div class="masonry-item-info"><p class="masonry-item-title">Hotel Theodore 02</p><p class="masonry-item-cat">Digital Ad</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Hotel-Theodore-Ads-07.jpg" alt="Hotel Theodore Ad 07">
-      <div class="masonry-item-info"><p class="masonry-item-title">Hotel Theodore 03</p><p class="masonry-item-cat">Digital Ad</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/LIT-Mens-day-POST_Social Media.jpg" alt="LIT Mens Day">
-      <div class="masonry-item-info"><p class="masonry-item-title">Men's Day Post</p><p class="masonry-item-cat">LIT · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/MOC-Bag-mockup-01.28.2024.jpg" alt="MOC Bag Mockup">
-      <div class="masonry-item-info"><p class="masonry-item-title">Bag Mockup</p><p class="masonry-item-cat">Ministry of Crab · Merch</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/MOC_SG_Festive_Dinner_menu_-_10.12.24-03.jpg" alt="MOC Festive Menu">
-      <div class="masonry-item-info"><p class="masonry-item-title">Festive Dinner Menu</p><p class="masonry-item-cat">Ministry of Crab · Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Monica-E-flier.jpg" alt="Monica E-Flier">
-      <div class="masonry-item-info"><p class="masonry-item-title">E-Flier</p><p class="masonry-item-cat">Cafe Monica · Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/NBR-Discount-Card-04.jpg" alt="NBR Discount Card">
-      <div class="masonry-item-info"><p class="masonry-item-title">Discount Card</p><p class="masonry-item-cat">NBR · Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/NBR-Discount-Card2-02.jpg" alt="NBR Discount Card 2">
-      <div class="masonry-item-info"><p class="masonry-item-title">Discount Card 02</p><p class="masonry-item-cat">NBR · Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/NTB-Promo-Monica-01.jpg" alt="NTB Promo Monica">
-      <div class="masonry-item-info"><p class="masonry-item-title">NTB Promo</p><p class="masonry-item-cat">Cafe Monica · Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/QR-Card-Menu-02.jpg" alt="QR Card Menu">
-      <div class="masonry-item-info"><p class="masonry-item-title">QR Card Menu</p><p class="masonry-item-cat">Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Roll-up-banner-solar-1-04.jpg" alt="Roll Up Banner">
-      <div class="masonry-item-info"><p class="masonry-item-title">Roll-Up Banner</p><p class="masonry-item-cat">Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Snow house christmas post.jpg" alt="Snow House Christmas">
-      <div class="masonry-item-info"><p class="masonry-item-title">Christmas Post</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/T&C Christmas Post.jpg" alt="T&C Christmas">
-      <div class="masonry-item-info"><p class="masonry-item-title">Christmas Post</p><p class="masonry-item-cat">Tuna &amp; The Crab · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/T&C Independence day Post.jpg" alt="T&C Independence Day">
-      <div class="masonry-item-info"><p class="masonry-item-title">Independence Day</p><p class="masonry-item-cat">Tuna &amp; The Crab · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Tickets-01.jpg" alt="Tickets">
-      <div class="masonry-item-info"><p class="masonry-item-title">Event Tickets</p><p class="masonry-item-cat">Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Uber Eats Promo-01.jpg" alt="Uber Eats Promo">
-      <div class="masonry-item-info"><p class="masonry-item-title">Uber Eats Promo</p><p class="masonry-item-cat">Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Uber-Eats-Promo-04.jpg" alt="Uber Eats Promo 04">
-      <div class="masonry-item-info"><p class="masonry-item-title">Uber Eats Promo 02</p><p class="masonry-item-cat">Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Black-friday-Post.jpg" alt="Black Friday">
-      <div class="masonry-item-info"><p class="masonry-item-title">Black Friday</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Egypt.jpg" alt="Egypt">
-      <div class="masonry-item-info"><p class="masonry-item-title">Egypt</p><p class="masonry-item-cat">Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Max-Post.jpg" alt="Max Post">
-      <div class="masonry-item-info"><p class="masonry-item-title">Max Post</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="corporate">
-      <img src="images/designs/corporate/Post-Cover.jpg" alt="Post Cover">
-      <div class="masonry-item-info"><p class="masonry-item-title">Post Cover</p><p class="masonry-item-cat">Social</p></div>
-    </div>
-    <!-- ── FREELANCE ── -->
-    <div class="masonry-item stagger" data-cat="freelance">
-      <img src="images/designs/freelance/BMW-Edit.jpg" alt="BMW Edit">
-      <div class="masonry-item-info"><p class="masonry-item-title">BMW Edit</p><p class="masonry-item-cat">Freelance · Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="freelance">
-      <img src="images/designs/freelance/GTR Car poster.jpg" alt="GTR Car Poster">
-      <div class="masonry-item-info"><p class="masonry-item-title">GTR Car Poster</p><p class="masonry-item-cat">Freelance · Print</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="freelance">
-      <img src="images/designs/freelance/GTR-R34.jpg" alt="GTR R34">
-      <div class="masonry-item-info"><p class="masonry-item-title">GTR R34</p><p class="masonry-item-cat">Freelance · Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="freelance">
-      <img src="images/designs/freelance/Greece-LightHouse.jpg" alt="Greece Lighthouse">
-      <div class="masonry-item-info"><p class="masonry-item-title">Greece Lighthouse</p><p class="masonry-item-cat">Freelance · Digital</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="freelance">
-      <img src="images/designs/freelance/Greek-God Mockup.jpg" alt="Greek God Mockup">
-      <div class="masonry-item-info"><p class="masonry-item-title">Greek God Mockup</p><p class="masonry-item-cat">Freelance · Apparel</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="freelance">
-      <img src="images/designs/freelance/New-Shoe-Post-01.jpg" alt="Shoe Post">
-      <div class="masonry-item-info"><p class="masonry-item-title">Shoe Post</p><p class="masonry-item-cat">Freelance · Social</p></div>
-    </div>
-    <div class="masonry-item stagger" data-cat="freelance">
-      <img src="images/designs/freelance/001.JPG" alt="Design 001">
-      <div class="masonry-item-info"><p class="masonry-item-title">Design Work</p><p class="masonry-item-cat">Freelance</p></div>
-    </div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Cafe-Monica-Independence-post.jpg','Independence Day','Cafe Monica · Social')"><img src="images/designs/corporate/Cafe-Monica-Independence-post.jpg" alt="Independence Day"><div class="masonry-item-info"><p class="masonry-item-title">Independence Day</p><p class="masonry-item-cat">Cafe Monica · Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Cafe-Monica-New-years-Post-02.jpg','New Year\'s Post','Cafe Monica · Social')"><img src="images/designs/corporate/Cafe-Monica-New-years-Post-02.jpg" alt="New Year"><div class="masonry-item-info"><p class="masonry-item-title">New Year's Post</p><p class="masonry-item-cat">Cafe Monica · Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Cafe-Monica-Valentines-01.jpg','Valentine\'s Day','Cafe Monica · Social')"><img src="images/designs/corporate/Cafe-Monica-Valentines-01.jpg" alt="Valentines"><div class="masonry-item-info"><p class="masonry-item-title">Valentine's Day</p><p class="masonry-item-cat">Cafe Monica · Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Chengdu-Christmas-post-02.jpg','Christmas Post','Chengdu · Social')"><img src="images/designs/corporate/Chengdu-Christmas-post-02.jpg" alt="Christmas"><div class="masonry-item-info"><p class="masonry-item-title">Christmas Post</p><p class="masonry-item-cat">Chengdu · Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Chinese-New-Year-Post.jpg','Chinese New Year','Social')"><img src="images/designs/corporate/Chinese-New-Year-Post.jpg" alt="Chinese New Year"><div class="masonry-item-info"><p class="masonry-item-title">Chinese New Year</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Comment_Card_MOC_Colombo 13.09.2024-01.jpg','Comment Card','Ministry of Crab · Print')"><img src="images/designs/corporate/Comment_Card_MOC_Colombo 13.09.2024-01.jpg" alt="Comment Card"><div class="masonry-item-info"><p class="masonry-item-title">Comment Card</p><p class="masonry-item-cat">Ministry of Crab · Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Coupon-AW-01.jpg','Coupon Design','Print')"><img src="images/designs/corporate/Coupon-AW-01.jpg" alt="Coupon"><div class="masonry-item-info"><p class="masonry-item-title">Coupon Design</p><p class="masonry-item-cat">Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Coupon-AW-02.jpg','Coupon Design 02','Print')"><img src="images/designs/corporate/Coupon-AW-02.jpg" alt="Coupon 02"><div class="masonry-item-info"><p class="masonry-item-title">Coupon Design 02</p><p class="masonry-item-cat">Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/D.O.C.jpg','D.O.C','Print')"><img src="images/designs/corporate/D.O.C.jpg" alt="DOC"><div class="masonry-item-info"><p class="masonry-item-title">D.O.C</p><p class="masonry-item-cat">Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Email-Template.jpg','Email Template','Digital')"><img src="images/designs/corporate/Email-Template.jpg" alt="Email Template"><div class="masonry-item-info"><p class="masonry-item-title">Email Template</p><p class="masonry-item-cat">Digital</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Event-Post.png','Event Post','Social')"><img src="images/designs/corporate/Event-Post.png" alt="Event Post"><div class="masonry-item-info"><p class="masonry-item-title">Event Post</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Fathers-Day-Ad-01.jpg','Father\'s Day Ad','Social')"><img src="images/designs/corporate/Fathers-Day-Ad-01.jpg" alt="Fathers Day"><div class="masonry-item-info"><p class="masonry-item-title">Father's Day Ad</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/GIG-Hotel-Ad-01.jpg','GIG Hotel Ad','Digital')"><img src="images/designs/corporate/GIG-Hotel-Ad-01.jpg" alt="GIG Hotel"><div class="masonry-item-info"><p class="masonry-item-title">GIG Hotel Ad</p><p class="masonry-item-cat">Digital</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/GrabFood-Dine-Out-Post.jpg','GrabFood Dine Out','Social')"><img src="images/designs/corporate/GrabFood-Dine-Out-Post.jpg" alt="GrabFood"><div class="masonry-item-info"><p class="masonry-item-title">GrabFood Dine Out</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Halloween-Post.jpg','Halloween Post','Social')"><img src="images/designs/corporate/Halloween-Post.jpg" alt="Halloween"><div class="masonry-item-info"><p class="masonry-item-title">Halloween Post</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Hotel-Theodore-Ads-01.jpg','Hotel Theodore','Digital Ad')"><img src="images/designs/corporate/Hotel-Theodore-Ads-01.jpg" alt="Hotel Theodore"><div class="masonry-item-info"><p class="masonry-item-title">Hotel Theodore</p><p class="masonry-item-cat">Digital Ad</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Hotel-Theodore-Ads-05.jpg','Hotel Theodore 02','Digital Ad')"><img src="images/designs/corporate/Hotel-Theodore-Ads-05.jpg" alt="Hotel Theodore 05"><div class="masonry-item-info"><p class="masonry-item-title">Hotel Theodore 02</p><p class="masonry-item-cat">Digital Ad</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Hotel-Theodore-Ads-07.jpg','Hotel Theodore 03','Digital Ad')"><img src="images/designs/corporate/Hotel-Theodore-Ads-07.jpg" alt="Hotel Theodore 07"><div class="masonry-item-info"><p class="masonry-item-title">Hotel Theodore 03</p><p class="masonry-item-cat">Digital Ad</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/LIT-Mens-day-POST_Social Media.jpg','Men\'s Day Post','LIT · Social')"><img src="images/designs/corporate/LIT-Mens-day-POST_Social Media.jpg" alt="Mens Day"><div class="masonry-item-info"><p class="masonry-item-title">Men's Day Post</p><p class="masonry-item-cat">LIT · Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/MOC-Bag-mockup-01.28.2024.jpg','Bag Mockup','Ministry of Crab · Merch')"><img src="images/designs/corporate/MOC-Bag-mockup-01.28.2024.jpg" alt="MOC Bag"><div class="masonry-item-info"><p class="masonry-item-title">Bag Mockup</p><p class="masonry-item-cat">Ministry of Crab · Merch</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/MOC_SG_Festive_Dinner_menu_-_10.12.24-03.jpg','Festive Dinner Menu','Ministry of Crab · Print')"><img src="images/designs/corporate/MOC_SG_Festive_Dinner_menu_-_10.12.24-03.jpg" alt="Festive Menu"><div class="masonry-item-info"><p class="masonry-item-title">Festive Dinner Menu</p><p class="masonry-item-cat">Ministry of Crab · Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Monica-E-flier.jpg','E-Flier','Cafe Monica · Digital')"><img src="images/designs/corporate/Monica-E-flier.jpg" alt="Monica Flier"><div class="masonry-item-info"><p class="masonry-item-title">E-Flier</p><p class="masonry-item-cat">Cafe Monica · Digital</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/NBR-Discount-Card-04.jpg','Discount Card','NBR · Print')"><img src="images/designs/corporate/NBR-Discount-Card-04.jpg" alt="NBR Card"><div class="masonry-item-info"><p class="masonry-item-title">Discount Card</p><p class="masonry-item-cat">NBR · Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/NBR-Discount-Card2-02.jpg','Discount Card 02','NBR · Print')"><img src="images/designs/corporate/NBR-Discount-Card2-02.jpg" alt="NBR Card 2"><div class="masonry-item-info"><p class="masonry-item-title">Discount Card 02</p><p class="masonry-item-cat">NBR · Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/NTB-Promo-Monica-01.jpg','NTB Promo','Cafe Monica · Digital')"><img src="images/designs/corporate/NTB-Promo-Monica-01.jpg" alt="NTB Promo"><div class="masonry-item-info"><p class="masonry-item-title">NTB Promo</p><p class="masonry-item-cat">Cafe Monica · Digital</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/QR-Card-Menu-02.jpg','QR Card Menu','Print')"><img src="images/designs/corporate/QR-Card-Menu-02.jpg" alt="QR Card"><div class="masonry-item-info"><p class="masonry-item-title">QR Card Menu</p><p class="masonry-item-cat">Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Roll-up-banner-solar-1-04.jpg','Roll-Up Banner','Print')"><img src="images/designs/corporate/Roll-up-banner-solar-1-04.jpg" alt="Roll Up Banner"><div class="masonry-item-info"><p class="masonry-item-title">Roll-Up Banner</p><p class="masonry-item-cat">Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Snow house christmas post.jpg','Christmas Post','Social')"><img src="images/designs/corporate/Snow house christmas post.jpg" alt="Snow House"><div class="masonry-item-info"><p class="masonry-item-title">Christmas Post</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/T&C Christmas Post.jpg','T&C Christmas','Tuna & The Crab · Social')"><img src="images/designs/corporate/T&C Christmas Post.jpg" alt="T&C Christmas"><div class="masonry-item-info"><p class="masonry-item-title">Christmas Post</p><p class="masonry-item-cat">Tuna &amp; The Crab</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/T&C Independence day Post.jpg','Independence Day','Tuna & The Crab · Social')"><img src="images/designs/corporate/T&C Independence day Post.jpg" alt="T&C Independence"><div class="masonry-item-info"><p class="masonry-item-title">Independence Day</p><p class="masonry-item-cat">Tuna &amp; The Crab</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Tickets-01.jpg','Event Tickets','Print')"><img src="images/designs/corporate/Tickets-01.jpg" alt="Tickets"><div class="masonry-item-info"><p class="masonry-item-title">Event Tickets</p><p class="masonry-item-cat">Print</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Uber Eats Promo-01.jpg','Uber Eats Promo','Digital')"><img src="images/designs/corporate/Uber Eats Promo-01.jpg" alt="Uber Eats"><div class="masonry-item-info"><p class="masonry-item-title">Uber Eats Promo</p><p class="masonry-item-cat">Digital</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Uber-Eats-Promo-04.jpg','Uber Eats Promo 02','Digital')"><img src="images/designs/corporate/Uber-Eats-Promo-04.jpg" alt="Uber Eats 04"><div class="masonry-item-info"><p class="masonry-item-title">Uber Eats Promo 02</p><p class="masonry-item-cat">Digital</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Black-friday-Post.jpg','Black Friday','Social')"><img src="images/designs/corporate/Black-friday-Post.jpg" alt="Black Friday"><div class="masonry-item-info"><p class="masonry-item-title">Black Friday</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Egypt.jpg','Egypt','Digital')"><img src="images/designs/corporate/Egypt.jpg" alt="Egypt"><div class="masonry-item-info"><p class="masonry-item-title">Egypt</p><p class="masonry-item-cat">Digital</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Max-Post.jpg','Max Post','Social')"><img src="images/designs/corporate/Max-Post.jpg" alt="Max Post"><div class="masonry-item-info"><p class="masonry-item-title">Max Post</p><p class="masonry-item-cat">Social</p></div></div>
+    <div class="masonry-item" data-cat="corporate" onclick="openLightbox('images/designs/corporate/Post-Cover.jpg','Post Cover','Social')"><img src="images/designs/corporate/Post-Cover.jpg" alt="Post Cover"><div class="masonry-item-info"><p class="masonry-item-title">Post Cover</p><p class="masonry-item-cat">Social</p></div></div>
+    <!-- FREELANCE -->
+    <div class="masonry-item" data-cat="freelance" onclick="openLightbox('images/designs/freelance/BMW-Edit.jpg','BMW Edit','Freelance · Digital')"><img src="images/designs/freelance/BMW-Edit.jpg" alt="BMW Edit"><div class="masonry-item-info"><p class="masonry-item-title">BMW Edit</p><p class="masonry-item-cat">Freelance · Digital</p></div></div>
+    <div class="masonry-item" data-cat="freelance" onclick="openLightbox('images/designs/freelance/GTR Car poster.jpg','GTR Car Poster','Freelance · Print')"><img src="images/designs/freelance/GTR Car poster.jpg" alt="GTR Poster"><div class="masonry-item-info"><p class="masonry-item-title">GTR Car Poster</p><p class="masonry-item-cat">Freelance · Print</p></div></div>
+    <div class="masonry-item" data-cat="freelance" onclick="openLightbox('images/designs/freelance/GTR-R34.jpg','GTR R34','Freelance · Digital')"><img src="images/designs/freelance/GTR-R34.jpg" alt="GTR R34"><div class="masonry-item-info"><p class="masonry-item-title">GTR R34</p><p class="masonry-item-cat">Freelance · Digital</p></div></div>
+    <div class="masonry-item" data-cat="freelance" onclick="openLightbox('images/designs/freelance/Greece-LightHouse.jpg','Greece Lighthouse','Freelance · Digital')"><img src="images/designs/freelance/Greece-LightHouse.jpg" alt="Greece Lighthouse"><div class="masonry-item-info"><p class="masonry-item-title">Greece Lighthouse</p><p class="masonry-item-cat">Freelance · Digital</p></div></div>
+    <div class="masonry-item" data-cat="freelance" onclick="openLightbox('images/designs/freelance/Greek-God Mockup.jpg','Greek God Mockup','Freelance · Apparel')"><img src="images/designs/freelance/Greek-God Mockup.jpg" alt="Greek God"><div class="masonry-item-info"><p class="masonry-item-title">Greek God Mockup</p><p class="masonry-item-cat">Freelance · Apparel</p></div></div>
+    <div class="masonry-item" data-cat="freelance" onclick="openLightbox('images/designs/freelance/New-Shoe-Post-01.jpg','Shoe Post','Freelance · Social')"><img src="images/designs/freelance/New-Shoe-Post-01.jpg" alt="Shoe Post"><div class="masonry-item-info"><p class="masonry-item-title">Shoe Post</p><p class="masonry-item-cat">Freelance · Social</p></div></div>
+    <div class="masonry-item" data-cat="freelance" onclick="openLightbox('images/designs/freelance/001.JPG','Design Work','Freelance')"><img src="images/designs/freelance/001.JPG" alt="Design 001"><div class="masonry-item-info"><p class="masonry-item-title">Design Work</p><p class="masonry-item-cat">Freelance</p></div></div>
   </div>
+  <footer>
+    <span class="footer-logo">Eli</span>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.instagram.com/eliiuiii/" target="_blank">Instagram</a>
+      <a class="footer-link" href="https://www.linkedin.com/in/elisha-deeshan" target="_blank">LinkedIn</a>
+      <a class="footer-link" href="mailto:elishadeeshan134@gmail.com">elishadeeshan134@gmail.com</a>
+      <a class="footer-link" href="tel:+94XXXXXXXXX">+94 XX XXX XXXX</a>
+    </div>
+    <span class="footer-copy">© 2026 Elisha Deeshan</span>
+  </footer>
 </div>
 
 <!-- ══════════ PHOTOGRAPHY ══════════ -->
@@ -467,23 +476,21 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
     <p class="gallery-hero-sub hero-animate">Food · Ambiance · Product · Lifestyle</p>
   </div>
   <div class="masonry" style="margin-top:2px">
-    <div class="masonry-item stagger">
-      <img src="images/photography/L1450449.jpg" alt="Photography">
-      <div class="masonry-item-info"><p class="masonry-item-title">Shot 01</p><p class="masonry-item-cat">Photography</p></div>
-    </div>
-    <div class="masonry-item stagger">
-      <img src="images/photography/L1450484.jpg" alt="Photography">
-      <div class="masonry-item-info"><p class="masonry-item-title">Shot 02</p><p class="masonry-item-cat">Photography</p></div>
-    </div>
-    <div class="masonry-item stagger">
-      <img src="images/photography/L1460109.jpg" alt="Photography">
-      <div class="masonry-item-info"><p class="masonry-item-title">Shot 03</p><p class="masonry-item-cat">Photography</p></div>
-    </div>
-    <div class="masonry-item stagger">
-      <img src="images/photography/L1460179.jpg" alt="Photography">
-      <div class="masonry-item-info"><p class="masonry-item-title">Shot 04</p><p class="masonry-item-cat">Photography</p></div>
-    </div>
+    <div class="masonry-item" onclick="openLightbox('images/photography/L1450449.jpg','Shot 01','Photography')"><img src="images/photography/L1450449.jpg" alt="Shot 01"><div class="masonry-item-info"><p class="masonry-item-title">Shot 01</p><p class="masonry-item-cat">Photography</p></div></div>
+    <div class="masonry-item" onclick="openLightbox('images/photography/L1450484.jpg','Shot 02','Photography')"><img src="images/photography/L1450484.jpg" alt="Shot 02"><div class="masonry-item-info"><p class="masonry-item-title">Shot 02</p><p class="masonry-item-cat">Photography</p></div></div>
+    <div class="masonry-item" onclick="openLightbox('images/photography/L1460109.jpg','Shot 03','Photography')"><img src="images/photography/L1460109.jpg" alt="Shot 03"><div class="masonry-item-info"><p class="masonry-item-title">Shot 03</p><p class="masonry-item-cat">Photography</p></div></div>
+    <div class="masonry-item" onclick="openLightbox('images/photography/L1460179.jpg','Shot 04','Photography')"><img src="images/photography/L1460179.jpg" alt="Shot 04"><div class="masonry-item-info"><p class="masonry-item-title">Shot 04</p><p class="masonry-item-cat">Photography</p></div></div>
   </div>
+  <footer>
+    <span class="footer-logo">Eli</span>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.instagram.com/eliiuiii/" target="_blank">Instagram</a>
+      <a class="footer-link" href="https://www.linkedin.com/in/elisha-deeshan" target="_blank">LinkedIn</a>
+      <a class="footer-link" href="mailto:elishadeeshan134@gmail.com">elishadeeshan134@gmail.com</a>
+      <a class="footer-link" href="tel:+94XXXXXXXXX">+94 XX XXX XXXX</a>
+    </div>
+    <span class="footer-copy">© 2026 Elisha Deeshan</span>
+  </footer>
 </div>
 
 <!-- ══════════ VIDEOGRAPHY ══════════ -->
@@ -494,42 +501,22 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
     <p class="gallery-hero-sub hero-animate">Reels · Brand Films · Events</p>
   </div>
   <div class="video-grid-layout" style="margin-top:2px">
-    <div class="video-card featured stagger">
-      <div class="video-card-ph">
-        <div class="play-ring"><div class="play-triangle"></div></div>
-        <p class="video-card-title">MINISTRY OF CRAB</p>
-        <p class="video-card-sub">Brand Film · Featured</p>
-      </div>
-    </div>
-    <div class="video-card stagger">
-      <div class="video-card-ph">
-        <div class="play-ring"><div class="play-triangle"></div></div>
-        <p class="video-card-title">TUNA &amp; THE CRAB</p>
-        <p class="video-card-sub">Restaurant Reel</p>
-      </div>
-    </div>
-    <div class="video-card stagger">
-      <div class="video-card-ph">
-        <div class="play-ring"><div class="play-triangle"></div></div>
-        <p class="video-card-title">CAFE MONICA</p>
-        <p class="video-card-sub">Ambiance Film</p>
-      </div>
-    </div>
-    <div class="video-card stagger">
-      <div class="video-card-ph">
-        <div class="play-ring"><div class="play-triangle"></div></div>
-        <p class="video-card-title">COFFEE SHOP</p>
-        <p class="video-card-sub">Morning Reel</p>
-      </div>
-    </div>
-    <div class="video-card stagger">
-      <div class="video-card-ph">
-        <div class="play-ring"><div class="play-triangle"></div></div>
-        <p class="video-card-title">BEHIND THE SCENES</p>
-        <p class="video-card-sub">Documentary</p>
-      </div>
-    </div>
+    <div class="video-card featured stagger"><div class="video-card-ph"><div class="play-ring"><div class="play-triangle"></div></div><p class="video-card-title">MINISTRY OF CRAB</p><p class="video-card-sub">Brand Film · Featured</p></div></div>
+    <div class="video-card stagger"><div class="video-card-ph"><div class="play-ring"><div class="play-triangle"></div></div><p class="video-card-title">TUNA &amp; THE CRAB</p><p class="video-card-sub">Restaurant Reel</p></div></div>
+    <div class="video-card stagger"><div class="video-card-ph"><div class="play-ring"><div class="play-triangle"></div></div><p class="video-card-title">CAFE MONICA</p><p class="video-card-sub">Ambiance Film</p></div></div>
+    <div class="video-card stagger"><div class="video-card-ph"><div class="play-ring"><div class="play-triangle"></div></div><p class="video-card-title">COFFEE SHOP</p><p class="video-card-sub">Morning Reel</p></div></div>
+    <div class="video-card stagger"><div class="video-card-ph"><div class="play-ring"><div class="play-triangle"></div></div><p class="video-card-title">BEHIND THE SCENES</p><p class="video-card-sub">Documentary</p></div></div>
   </div>
+  <footer>
+    <span class="footer-logo">Eli</span>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.instagram.com/eliiuiii/" target="_blank">Instagram</a>
+      <a class="footer-link" href="https://www.linkedin.com/in/elisha-deeshan" target="_blank">LinkedIn</a>
+      <a class="footer-link" href="mailto:elishadeeshan134@gmail.com">elishadeeshan134@gmail.com</a>
+      <a class="footer-link" href="tel:+94XXXXXXXXX">+94 XX XXX XXXX</a>
+    </div>
+    <span class="footer-copy">© 2026 Elisha Deeshan</span>
+  </footer>
 </div>
 
 <!-- ══════════ CONTACT ══════════ -->
@@ -541,18 +528,10 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
         <p class="contact-tagline hero-animate">Available for brand collaborations,<br>creative direction &amp; commissioned work.</p>
       </div>
       <div class="contact-info stagger">
-        <div class="contact-info-row">
-          <span class="contact-info-label">Based in</span>
-          <span class="contact-info-val">Colombo, Sri Lanka</span>
-        </div>
-        <div class="contact-info-row">
-          <span class="contact-info-label">Email</span>
-          <a class="contact-info-val" href="mailto:elishadeeshan134@gmail.com">elishadeeshan134@gmail.com</a>
-        </div>
-        <div class="contact-info-row">
-          <span class="contact-info-label">Currently</span>
-          <span class="contact-info-val">Ministry of Crab</span>
-        </div>
+        <div class="contact-info-row"><span class="contact-info-label">Based in</span><span class="contact-info-val">Colombo, Sri Lanka</span></div>
+        <div class="contact-info-row"><span class="contact-info-label">Email</span><a class="contact-info-val" href="mailto:elishadeeshan134@gmail.com">elishadeeshan134@gmail.com</a></div>
+        <div class="contact-info-row"><span class="contact-info-label">Phone</span><a class="contact-info-val" href="tel:+94XXXXXXXXX">+94 XX XXX XXXX</a></div>
+        <div class="contact-info-row"><span class="contact-info-label">Currently</span><span class="contact-info-val">Ministry of Crab</span></div>
         <div class="socials">
           <a class="social-a" href="https://www.instagram.com/eliiuiii/" target="_blank">Instagram</a>
           <a class="social-a" href="https://www.linkedin.com/in/elisha-deeshan" target="_blank">LinkedIn</a>
@@ -565,22 +544,20 @@ nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-
       <p class="about-para">I'm a graphic designer and visual creative with experience in branding, print design, social media content, photography, and video editing. Currently working at <strong>Ministry of Crab</strong>, I create visual experiences that help brands connect with their audience through thoughtful design and compelling storytelling.</p>
       <p class="about-para">I'm passionate about creating work that not only looks great but leaves a lasting impression. Outside of design, I'm building my own streetwear brand, exploring photography and videography, and constantly finding new ways to tell stories through visuals.</p>
       <div class="skills-wrap stagger">
-        <span class="s-tag">Graphic Design</span>
-        <span class="s-tag">Brand Identity</span>
-        <span class="s-tag">Photography</span>
-        <span class="s-tag">Videography</span>
-        <span class="s-tag">Print Design</span>
-        <span class="s-tag">Social Content</span>
-        <span class="s-tag">Menu Design</span>
-        <span class="s-tag">Packaging Design</span>
-        <span class="s-tag">Restaurant Branding</span>
-        <span class="s-tag">Motion Graphics</span>
-        <span class="s-tag">Photo Retouching</span>
-        <span class="s-tag">Video Editing</span>
-        <span class="s-tag">Food Photography</span>
+        <span class="s-tag">Graphic Design</span><span class="s-tag">Brand Identity</span><span class="s-tag">Photography</span><span class="s-tag">Videography</span><span class="s-tag">Print Design</span><span class="s-tag">Social Content</span><span class="s-tag">Menu Design</span><span class="s-tag">Packaging Design</span><span class="s-tag">Restaurant Branding</span><span class="s-tag">Motion Graphics</span><span class="s-tag">Photo Retouching</span><span class="s-tag">Video Editing</span><span class="s-tag">Food Photography</span>
       </div>
     </div>
   </div>
+  <footer>
+    <span class="footer-logo">Eli</span>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.instagram.com/eliiuiii/" target="_blank">Instagram</a>
+      <a class="footer-link" href="https://www.linkedin.com/in/elisha-deeshan" target="_blank">LinkedIn</a>
+      <a class="footer-link" href="mailto:elishadeeshan134@gmail.com">elishadeeshan134@gmail.com</a>
+      <a class="footer-link" href="tel:+94XXXXXXXXX">+94 XX XXX XXXX</a>
+    </div>
+    <span class="footer-copy">© 2026 Elisha Deeshan</span>
+  </footer>
 </div>
 
 <script>
@@ -589,54 +566,62 @@ const cur=document.getElementById('cursor'),ring=document.getElementById('cursor
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
 (function lerp(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerp);})();
-document.querySelectorAll('a,button,[onclick],.discipline-row,.reel-item,.masonry-item,.video-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover')});
-  el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover')});
-});
+function addHover(el){el.addEventListener('mouseenter',()=>{cur.classList.add('hover');ring.classList.add('hover')});el.addEventListener('mouseleave',()=>{cur.classList.remove('hover');ring.classList.remove('hover')});}
+document.querySelectorAll('a,button,[onclick],.discipline-row,.reel-item,.masonry-item,.video-card').forEach(addHover);
+
+/* ── LIGHTBOX ── */
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img');
+const lbTitle=document.getElementById('lb-title'),lbCat=document.getElementById('lb-cat');
+
+function openLightbox(src,title,cat){
+  lb.classList.remove('loaded');
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+  lbTitle.textContent=title||'';
+  lbCat.textContent=cat||'';
+  lbImg.src='';
+  const tmp=new Image();
+  tmp.onload=()=>{lbImg.src=src;requestAnimationFrame(()=>lb.classList.add('loaded'));};
+  tmp.src=src;
+}
+function closeLightbox(e){
+  if(e&&e.target!==lb&&e.target.className!=='lb-close')return;
+  lb.classList.remove('open','loaded');
+  document.body.style.overflow='';
+  setTimeout(()=>{lbImg.src='';},400);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox({target:lb});});
 
 /* ── PAGE SWITCHING ── */
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   window.scrollTo({top:0,behavior:'instant'});
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.classList.toggle('active',a.dataset.page===id);
-  });
-  document.querySelectorAll('#page-'+id+' .hero-animate').forEach(el=>{
-    el.style.animation='none';
-    requestAnimationFrame(()=>{el.style.animation='';});
-  });
-  // reset stagger/reveal so they re-fire
-  document.querySelectorAll('#page-'+id+' .reveal,#page-'+id+' .reveal-left,#page-'+id+' .reveal-right,#page-'+id+' .stagger').forEach(el=>{
-    el.classList.remove('visible');
-  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.classList.toggle('active',a.dataset.page===id);});
+  document.querySelectorAll('#page-'+id+' .hero-animate').forEach(el=>{el.style.animation='none';requestAnimationFrame(()=>{el.style.animation='';});});
+  document.querySelectorAll('#page-'+id+' .reveal,#page-'+id+' .reveal-left,#page-'+id+' .reveal-right,#page-'+id+' .stagger,#page-'+id+' .masonry-item').forEach(el=>el.classList.remove('visible'));
   setTimeout(()=>observeAll(),80);
 }
 
 /* ── FILTER ── */
-function filterDesigns(cat){
+function filterDesigns(cat,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
+  btn.classList.add('active');
   document.querySelectorAll('#designs-masonry .masonry-item').forEach(item=>{
-    if(cat==='all'||item.dataset.cat===cat){
-      item.classList.remove('hidden');
-    } else {
-      item.classList.add('hidden');
-    }
+    if(cat==='all'||item.dataset.cat===cat){item.classList.remove('hidden');}
+    else{item.classList.add('hidden');}
   });
+  // re-observe after filter
+  document.querySelectorAll('#designs-masonry .masonry-item:not(.hidden)').forEach(el=>{el.classList.remove('visible');io.observe(el);});
 }
 
 /* ── SCROLL REVEAL ── */
 const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
-  });
-},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+},{threshold:0.06,rootMargin:'0px 0px -20px 0px'});
 
 function observeAll(){
-  document.querySelectorAll('.page.active .reveal,.page.active .reveal-left,.page.active .reveal-right,.page.active .stagger').forEach(el=>{
-    io.observe(el);
-  });
+  document.querySelectorAll('.page.active .reveal,.page.active .reveal-left,.page.active .reveal-right,.page.active .stagger,.page.active .masonry-item:not(.hidden)').forEach(el=>io.observe(el));
 }
 observeAll();
 </script>
